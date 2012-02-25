@@ -9,7 +9,7 @@ class Dispatcher
   def initialize(args)
     @valid_actions = "log search".split
     @action = args[0]
-    @args = args[1..args.count]
+    @args = args[1]
     validate_action
   end
 

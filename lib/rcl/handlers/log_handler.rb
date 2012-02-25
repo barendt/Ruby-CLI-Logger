@@ -1,4 +1,4 @@
-require 'rcl/entry'
+require 'rcl/item'
 
 class LogHandler
 
@@ -7,7 +7,7 @@ class LogHandler
   end
 
   def handle
-    Entry.new(@entry).save
+    item = Item.create(:entry => @entry)
   end
 
 end

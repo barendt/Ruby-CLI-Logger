@@ -1,3 +1,4 @@
+require 'rcl/handlers/display_handler.rb'
 require 'rcl/handlers/log_handler.rb'
 require 'rcl/handlers/setup_handler.rb'
 
@@ -7,7 +8,7 @@ end
 class Dispatcher
 
   def initialize(args)
-    @valid_actions = "log search".split
+    @valid_actions = "log display".split
     @action = args[0]
     @args = args[1]
     validate_action

@@ -3,3 +3,10 @@
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 require 'rcl'
+
+begin
+  Dispatcher.new(ARGV).dispatch
+rescue DispatcherActionNotFoundError
+  puts "#{ARGV[0]} is not a valid command."
+end
+

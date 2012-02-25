@@ -1,0 +1,2 @@
+* Store rcl_root in just one place.
+* Get a db handle from one place as well.

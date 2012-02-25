@@ -2,12 +2,12 @@ require 'rcl/entry'
 
 class LogHandler
 
-  def initialize(args)
-    @args = args
+  def initialize(entry)
+    @entry = entry
   end
 
   def handle
-    Entry.new(@args.join(" ")).save
+    Entry.new(@entry).save
   end
 
 end

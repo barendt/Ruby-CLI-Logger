@@ -16,7 +16,7 @@ class SetupHandler
     db = Sequel.sqlite(@rcl_root + "/rcl.sqlite")
     db.create_table :items do
       primary_key :id
-      String :entry
+      Text :entry
       DateTime :logged_at, :default => Sequel::CURRENT_TIMESTAMP
     end
   end

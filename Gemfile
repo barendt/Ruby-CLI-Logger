@@ -1,5 +1,6 @@
 source :rubygems
 
+gem "chronic"
 gem "sequel"
 
 group :test do

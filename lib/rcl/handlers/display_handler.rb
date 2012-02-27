@@ -1,3 +1,4 @@
+require 'chronic'
 require 'rcl/item'
 
 class DisplayHandler
@@ -9,7 +10,9 @@ class DisplayHandler
   def handle
     puts "ID\tText\n"
     puts "--\t----\n"
-    if @options[:searchstring]
+    if @options[:since]
+      items = Item.filter("logged_at > ?", Chronic.parse(@options[:since]))
+    elsif @options[:searchstring]
       items = Item.filter("entry LIKE ?", '%'+@options[:searchstring]+'%')
     else
       items = Item.all

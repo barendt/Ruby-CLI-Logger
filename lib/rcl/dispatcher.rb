@@ -32,10 +32,6 @@ class Dispatcher
     !File.exists?(Dir.home + "/.rcl")
   end
 
-  def parse_action
-    @action = @command.split[0].downcase.strip
-  end
-
   def validate_action
     raise DispatcherActionNotFoundError unless @valid_actions.include?(@action)
   end

@@ -19,7 +19,6 @@ class SetupHandler
       String :entry
       DateTime :logged_at, :default => Sequel::CURRENT_TIMESTAMP
     end
-    db[:items].insert(:entry => "This is my first log entry.")
   end
 
   def setup_rcl_directory

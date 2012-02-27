@@ -25,8 +25,12 @@ end
 
 optparse.parse!
 
-if !ARGV.nil?
-  entry = ARGV.first
+if options[:action] == 'log'
+  if !ARGV.empty?
+    entry = ARGV.first
+  else
+    entry = STDIN.gets
+  end
 end
 
 begin

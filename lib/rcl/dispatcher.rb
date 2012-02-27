@@ -7,11 +7,11 @@ end
 
 class Dispatcher
 
-  def initialize(options, args=nil)
+  def initialize(options, entry=nil)
     @valid_actions = "log display".split
     @action = options[:action]
     @options = options
-    @entry = args.first if !args.nil?
+    @entry = entry
     validate_action
   end
 

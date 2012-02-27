@@ -25,8 +25,12 @@ end
 
 optparse.parse!
 
+if !ARGV.nil?
+  entry = ARGV.first
+end
+
 begin
-  Dispatcher.new(options, ARGV).dispatch
+  Dispatcher.new(options, entry).dispatch
 rescue DispatcherNotEnoughArgumentsError
   puts Dispatcher.help
 rescue DispatcherActionNotFoundError

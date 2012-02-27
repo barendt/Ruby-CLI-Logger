@@ -9,7 +9,12 @@ class DisplayHandler
   def handle
     puts "ID\tText\n"
     puts "--\t----\n"
-    Item.all.each do |i|
+    if @options[:searchstring]
+      items = Item.filter("entry LIKE ?", '%'+@options[:searchstring]+'%')
+    else
+      items = Item.all
+    end
+    items.each do |i|
       puts "#{i.id}\t#{i.entry}\n"
     end
   end

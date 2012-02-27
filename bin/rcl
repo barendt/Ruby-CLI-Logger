@@ -13,12 +13,16 @@ optparse = OptionParser.new do |opts|
   opts.on('-d', '--display', 'Display log entries') do
     options[:action] = 'display'
   end
+  opts.on('-s SEARCHSTRING', '--search SEARCHSTRING', 'Display log entries containing SEARCHSTRING') do |searchstring|
+    options[:action] = 'display'
+    options[:searchstring] = searchstring
+  end
 end
 
 optparse.parse!
 
 begin
-  Dispatcher.new(options, ARGV[-1]).dispatch
+  Dispatcher.new(options, ARGV).dispatch
 rescue DispatcherNotEnoughArgumentsError
   puts Dispatcher.help
 rescue DispatcherActionNotFoundError

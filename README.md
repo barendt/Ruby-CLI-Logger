@@ -6,11 +6,20 @@ Ideally, there will also eventually be a way to push notes from rcl into Evernot
 
 # Requirements
 
+* chronic
 * sequel
 * rspec (to run the tests)
 
 # Usage
 
-So far, all it does is log, like so:
+One can log something, like so:
 
      $ rcl log "Don't forget this."
+
+or by piping input in:
+
+     $ echo "And another thing" | rcl
+
+You can also get your log entries back:
+
+     $ rcl -d

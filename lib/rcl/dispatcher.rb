@@ -2,15 +2,20 @@ require 'rcl/handlers/display_handler.rb'
 require 'rcl/handlers/log_handler.rb'
 require 'rcl/handlers/setup_handler.rb'
 
+class DispatcherNotEnoughArgumentsError < StandardError
+end
+
 class DispatcherActionNotFoundError < StandardError
 end
 
 class Dispatcher
 
-  def initialize(args)
+  def initialize(options, entry=nil)
+    #raise DispatcherNotEnoughArgumentsError if args.count == 0
     @valid_actions = "log display".split
-    @action = args[0]
-    @args = args[1]
+    @action = options[:action]
+    @options = options
+    @entry = entry
     validate_action
   end
 
@@ -19,7 +24,15 @@ class Dispatcher
       SetupHandler.new.handle
     end
     handler_class = "#{@action.capitalize}Handler"
-    Object.const_get(handler_class).new(@args).handle
+    if @options[:action] == 'log'
+      LogHandler.new(@options, @entry).handle
+    else
+      Object.const_get(handler_class).new(@options).handle
+    end
+  end
+
+  def self.help
+    return "rcl: Try 'rcl help' for more information."
   end
 
   private

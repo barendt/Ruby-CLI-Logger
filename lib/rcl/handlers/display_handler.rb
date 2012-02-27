@@ -2,7 +2,8 @@ require 'rcl/item'
 
 class DisplayHandler
 
-  def initialize(args)
+  def initialize(options)
+    @options = options
   end
 
   def handle

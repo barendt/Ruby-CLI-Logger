@@ -2,7 +2,7 @@ require 'rcl/item'
 
 class LogHandler
 
-  def initialize(entry)
+  def initialize(options, entry)
     @entry = entry
   end
 

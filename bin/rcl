@@ -2,10 +2,25 @@
 
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
+require 'optparse'
 require 'rcl'
 
+options = {}
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: rcl [options]"
+
+  options[:action] = 'log'
+  opts.on('-d', '--display', 'Display log entries') do
+    options[:action] = 'display'
+  end
+end
+
+optparse.parse!
+
 begin
-  Dispatcher.new(ARGV).dispatch
+  Dispatcher.new(options, ARGV[-1]).dispatch
+rescue DispatcherNotEnoughArgumentsError
+  puts Dispatcher.help
 rescue DispatcherActionNotFoundError
   puts "#{ARGV[0]} is not a valid command."
 end

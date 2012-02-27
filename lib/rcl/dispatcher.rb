@@ -19,10 +19,10 @@ class Dispatcher
     if first_run?
       SetupHandler.new.handle
     end
-    handler_class = "#{@action.capitalize}Handler"
     if @options[:action] == 'log'
       LogHandler.new(@options, @entry).handle
     else
+      handler_class = "#{@action.capitalize}Handler"
       Object.const_get(handler_class).new(@options).handle
     end
   end

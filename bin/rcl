@@ -39,8 +39,6 @@ end
 
 begin
   Dispatcher.new(options, entry).dispatch
-rescue DispatcherNotEnoughArgumentsError
-  puts Dispatcher.help
 rescue DispatcherActionNotFoundError
   puts "#{ARGV[0]} is not a valid command."
 end

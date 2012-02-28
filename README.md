@@ -23,3 +23,8 @@ or by piping input in:
 You can also get your log entries back:
 
      $ rcl -d
+
+or pull back entries from a particular day:
+
+     $ rcl --on "yesterday"
+     $ rcl --on "2/4/2012"

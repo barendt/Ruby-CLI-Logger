@@ -17,6 +17,10 @@ optparse = OptionParser.new do |opts|
     options[:action] = 'display'
     options[:since] = since
   end
+  opts.on('--on ON', 'Display log entries from a given date, ON') do |on|
+    options[:action] = 'display'
+    options[:on] = on
+  end
   opts.on('-s SEARCHSTRING', '--search SEARCHSTRING', 'Display log entries containing SEARCHSTRING') do |searchstring|
     options[:action] = 'display'
     options[:searchstring] = searchstring

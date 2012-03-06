@@ -2,6 +2,9 @@ require 'base64'
 require 'net/http'
 require 'net/https'
 
+class SimplenoteRequestFailedError < StandardError
+end
+
 class Simplenote
 
   def initialize(email, password)
@@ -21,8 +24,7 @@ class Simplenote
   def make_request(resource, body)
     @ua = Net::HTTP.new('simple-note.appspot.com', 443)
     @ua.use_ssl = true
-    response, token = @ua.post(resource, body)
-    puts token
-    puts response.code.to_s
+    response, @token = @ua.post(resource, body)
+    raise SimplenoteRequestFailedError if response.code.to_i != 200
   end
 end

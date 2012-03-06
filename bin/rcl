@@ -25,6 +25,10 @@ optparse = OptionParser.new do |opts|
     options[:action] = 'display'
     options[:searchstring] = searchstring
   end
+  opts.on('-p SERVICE', '--push SERVICE') do |service|
+    options[:action] = 'push'
+    options[:service] = service
+  end
 end
 
 optparse.parse!

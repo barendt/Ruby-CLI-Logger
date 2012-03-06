@@ -1,5 +1,6 @@
 require 'rcl/handlers/display_handler.rb'
 require 'rcl/handlers/log_handler.rb'
+require 'rcl/handlers/push_handler.rb'
 require 'rcl/handlers/setup_handler.rb'
 
 class DispatcherActionNotFoundError < StandardError
@@ -8,7 +9,7 @@ end
 class Dispatcher
 
   def initialize(options, entry=nil)
-    @valid_actions = "log display".split
+    @valid_actions = "log display push".split
     @action = options[:action]
     @options = options
     @entry = entry

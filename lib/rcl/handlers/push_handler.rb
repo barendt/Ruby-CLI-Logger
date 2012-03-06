@@ -1,3 +1,4 @@
+require 'highline/import'
 require 'rcl/simplenote'
 
 class PushHandler
@@ -7,12 +8,14 @@ class PushHandler
   end
 
   def handle
-    puts "Simplenote email: "
-    email = gets.chomp
-    puts "Simplenote password: "
-    password = gets.chomp
+    prompt
+    s = Simplenote.new(@email, @password)
+  end
 
-    s = Simplenote.new(email, password)
+  private
+  def prompt
+    @email = ask("Enter your Simplenote email:  ") { |q| q.echo = true }
+    @password = ask("Enter your Simplenote password:  ") { |q| q.echo = "*" }
   end
 
 end

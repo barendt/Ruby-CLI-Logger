@@ -1,5 +1,6 @@
+require 'rcl/db_helper'
 require 'sequel'
 
-DB = Sequel.sqlite(Dir.home + "/.rcl/rcl.sqlite")
+DB = DbHelper.get_db_connection
 class Item < Sequel::Model
 end

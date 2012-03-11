@@ -9,7 +9,7 @@ class PushHandler
 
   def handle
     prompt
-    s = Simplenote.new(@email, @password)
+    Simplenote.new(@email, @password)
   end
 
   private

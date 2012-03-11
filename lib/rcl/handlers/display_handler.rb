@@ -1,5 +1,5 @@
-require 'chronic'
 require 'rcl/item'
+require 'rcl/item_finder'
 
 class DisplayHandler
 
@@ -11,12 +11,9 @@ class DisplayHandler
     puts "ID\tText\n"
     puts "--\t----\n"
     if @options[:since]
-      items = Item.filter("logged_at > ?", Chronic.parse(@options[:since]))
+      items = ItemFinder.new.since(@options[:since])
     elsif @options[:on]
-      date_specified = Chronic.parse(@options[:on])
-      start_of_day = Time.mktime(date_specified.year, date_specified.month, date_specified.day, 0)
-      end_of_day = Time.mktime(date_specified.year, date_specified.month, date_specified.day, 24)
-      items = Item.filter("logged_at BETWEEN ? AND ?", start_of_day, end_of_day)
+      items = ItemFinder.new.on(@options[:on])
     elsif @options[:searchstring]
       items = Item.filter("entry LIKE ?", '%'+@options[:searchstring]+'%')
     else

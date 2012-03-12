@@ -14,11 +14,7 @@ class SetupHandler
   private
   def create_new_database
     db = Sequel.sqlite(@rcl_root + "/rcl.sqlite")
-    db.create_table :items do
-      primary_key :id
-      Text :entry
-      DateTime :logged_at, :default => Sequel::CURRENT_TIMESTAMP
-    end
+    DbHelper.create_schema(db)
   end
 
   def setup_rcl_directory

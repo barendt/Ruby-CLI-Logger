@@ -3,6 +3,10 @@ require 'rcl/item'
 
 class ItemFinder
 
+  def like(search_string)
+    Item.filter(:entry.like("%#{search_string}%"))
+  end
+
   def since(date_string)
     Item.filter("logged_at > ?", Chronic.parse(date_string))
   end

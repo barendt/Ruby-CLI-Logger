@@ -5,7 +5,8 @@ describe Item do
   context 'creation' do
 
     it 'can be created' do
-      Item.create(:entry => Time.now.to_i)
+      i = Item.create(:entry => Time.now.to_i)
+      i.id.should_not be nil
     end
 
     it 'requires an entry' do

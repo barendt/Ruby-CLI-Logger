@@ -3,6 +3,10 @@ require 'rcl/item'
 
 class ItemFinder
 
+  def all
+    Item.all
+  end
+
   def like(search_string)
     Item.filter(:entry.like("%#{search_string}%"))
   end

@@ -7,10 +7,16 @@ describe ItemFinder do
     Item.db = db
     DbHelper.create_schema(db)
 
+    Item.create(:entry => Time.now.to_i,
+                :logged_at => Chronic.parse("last month"))
     Item.create(:entry => Time.now.to_i)
     Item.create(:entry => Time.now.to_i)
     Item.create(:entry => Time.now.to_i)
     Item.create(:entry => "Buy milk at the store.")
+  end
+
+  it 'finds all of the items' do
+    ItemFinder.new.all.should have(5).things
   end
 
   it 'finds items created today' do

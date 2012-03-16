@@ -21,4 +21,8 @@ describe ItemFinder do
     ItemFinder.new.like('milk').should have(1).things
   end
 
+  it 'finds items logged in the last day' do
+    ItemFinder.new.since("yesterday").should have(4).things
+  end
+
 end
